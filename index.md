@@ -1,113 +1,96 @@
-<html>
-<head>
-<style type="text/css">
-/* important styles */
+<link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+<link href="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet">
 
-.fix-column {
-    float: left;
-}
-.thead {
-    height: 40px;
-    white-space: nowrap;
-}
-.thead > span {
-    display: inline-block;
-    width: 120px;
-    line-height: 40px;
-    box-shadow: inset 0 0 1px 0 rgba(0,0,0,.5);
-    background-color: rgba(255,0,0,.3);
-    text-align: center;
-}
-.trow {
-    white-space: nowrap;
-}
-.trow > span {
-    display: inline-block;
-    width: 120px;
-    box-shadow: inset 0 0 1px 0 rgba(0,0,0,.5);
-    line-height: 80px;
-    height: 80px;
-}
-.tbody {
-    height: 300px;
-    overflow: auto;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.fix-column > .tbody {
-    overflow: hidden;
-    /*padding-bottom: 50px;*/
-}
-/*.fix-column > .tbody > .trow:last-child {margin-bottom: 50px;}*/
+<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
 
-.fix-column > .tbody > .trow {
-    margin-top: -50px;
-    margin-bottom: 50px;
-}
-.fix-column > .tbody > .trow:first-child {
-    margin-top: 0px;
-}
-
-.rest-columns {
-    width: 350px;
-}
-.rest-columns > .thead {
-    /*padding-right: 50px;*/
-    overflow: hidden;
-}
-/*.rest-columns > .thead > :last-child {margin-right: 50px;}*/
-.rest-columns > .thead > span {
-    margin-right: 50px;
-    margin-left: -50px;
-}
-.rest-columns > .thead > :first-child {margin-left: 0px;}
+<style>
+.mr10 {margin-right: 10px;}
 </style>
-</head>
 
-<body>
-  <div class="total-wrapper">
-    <div class="fix-column">
-        <div class="thead">
-            <span>Int1</span>
-        </div>
-        <div class="tbody">
-            <div class="trow">
-                <span>Lorem</span>
-            </div>
-            <div class="trow">
-                <span>Lorem</span>
-            </div>
-            <div class="trow">
-                <span>Lorem</span>
-            </div>
-            <div class="trow">
-                <span>Lorem</span>
-            </div>
-        </div>
-    </div>
-    <div class="rest-columns">
-        <div class="thead">
-            <span>Int2</span><span>Int3</span><span>Int4</span><span>Int5</span>
-        </div>
-        <div class="tbody">
-            <div class="trow">
-                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
-            </div>
-            <div class="trow">
-                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
-            </div>
-            <div class="trow">
-                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
-            </div>
-            <div class="trow">
-                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
-            </div>
-        </div>
-    </div>
+<div class="toolbar">
+  <div>
+    <label class="checkbox">
+      <input id="height" type="checkbox" checked> Enable Height
+    </label>
+  </div>
+  <div class="form-inline">
+    <span class="mr10">Fixed Number: </span>
+    <input class="form-control mr10" id="fixedNumber" type="number" value="2" min="1" max="5">
+    <span class="mr10">Fixed Right Number: </span class="mr10">
+    <input class="form-control" id="fixedRightNumber" type="number" value="1" min="0" max="5">
+  </div>
+  <div class="form-inline">
+    <span class="mr10">Cells: </span>
+    <input class="form-control mr10" id="cells" type="number" value="20" min="1" max="30">
+    <span class="mr10">Rows: </span class="mr10">
+    <input class="form-control mr10" id="rows" type="number" value="20" min="1" max="50">
+    <button id="build" class="btn btn-secondary">Rebuild Table</button>
+  </div>
 </div>
-</body>
+
+<table id="table"></table>
 
 <script>
- 
+  var $table = $('#table')
+
+  function buildTable($el) {
+    var cells = +$('#cells').val()
+    var rows = +$('#rows').val()
+    var i
+    var j
+    var row
+    var columns = [
+      {
+        field: 'state',
+        checkbox: true,
+        valign: 'middle'
+      }
+    ]
+    var data = []
+
+    for (i = 0; i < cells; i++) {
+      columns.push({
+        field: 'field' + i,
+        title: 'Cell' + i,
+        sortable: true,
+        valign: 'middle',
+        formatter: function (val) {
+          return '<div class="item">' + val + '</div>'
+        },
+        events: {
+          'click .item': function () {
+            console.log('click')
+          }
+        }
+      })
+    }
+    for (i = 0; i < rows; i++) {
+      row = {}
+      for (j = 0; j < cells + 3; j++) {
+        row['field' + j] = 'Row-' + i + '-' + j
+      }
+      data.push(row)
+    }
+    $el.bootstrapTable('destroy').bootstrapTable({
+      height: $('#height').prop('checked') ? 400 : undefined,
+      columns: columns,
+      data: data,
+      toolbar: '.toolbar',
+      search: true,
+      showColumns: true,
+      clickToSelect: true,
+      fixedColumns: true,
+      fixedNumber: +$('#fixedNumber').val(),
+      fixedRightNumber: +$('#fixedRightNumber').val()
+    })
+  }
+
+  $(function() {
+    buildTable($table)
+
+    $('#build').click(function () {
+      buildTable($table)
+    })
+  })
 </script>
-</html>
