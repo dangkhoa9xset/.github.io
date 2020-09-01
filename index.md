@@ -80,22 +80,6 @@ td, th {
 <body>
 <div class="container">
 
-<div class="fixed-th-table-wrapper">
-<!-- fixed-th-table -->
-<table>
-    <tr>
-         <th>aaaaaaa</th>
-         <td>ccccccccccc asdsad asd as</td>
-         <td>ccccccccccc asdsad asd as</td>
-    </tr>
-    <tr>
-         <th>cccccccc</th>
-         <td>xxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyy zzzzzzzzzzzzz</td>
-         <td>xxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyy zzzzzzzzzzzzz</td>
-    </tr>
-</table>
-</div>
-
 <div class="scrolled-td-table-wrapper">
 <!-- scrolled-td-table
      - same as fixed-th-table -->
