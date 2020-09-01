@@ -1,3 +1,38 @@
+<style>
+  div{
+  overflow:auto;
+  width:100%;
+  height:200px;
+}
+td,
+th {
+  border: 1px solid #000;
+  width: 100px;
+}
+th {background-color:red;}
+
+table {
+  table-layout: fixed;
+  width:100%;
+}
+td:first-child, th:first-child {
+  position:sticky;
+  left:0;
+  z-index:1;
+  background-color:grey;
+}
+td:last-child, th:last-child {
+  position:sticky;
+  right:0;
+  z-index:1;
+  background-color:blue;
+}
+thead tr th {
+  position:sticky;
+  top:0;
+}
+th:first-child, th:last-child {z-index:2;background-color:red;}
+</style>
 <div>
   <table>
     <thead>
