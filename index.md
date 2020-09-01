@@ -47,6 +47,9 @@ th:first-child, th:last-child {z-index:2;background-color:red;}
         <th>&nbsp;&nbsp;&nbsp;</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
         <th>&nbsp;&nbsp;&nbsp;</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
       </tr>
     </thead>
     <tbody>
