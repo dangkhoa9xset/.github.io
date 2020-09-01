@@ -1,96 +1,61 @@
-<link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
-<link href="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
-
-<style>
-.mr10 {margin-right: 10px;}
-</style>
-
-<div class="toolbar">
-  <div>
-    <label class="checkbox">
-      <input id="height" type="checkbox" checked> Enable Height
-    </label>
-  </div>
-  <div class="form-inline">
-    <span class="mr10">Fixed Number: </span>
-    <input class="form-control mr10" id="fixedNumber" type="number" value="2" min="1" max="5">
-    <span class="mr10">Fixed Right Number: </span class="mr10">
-    <input class="form-control" id="fixedRightNumber" type="number" value="1" min="0" max="5">
-  </div>
-  <div class="form-inline">
-    <span class="mr10">Cells: </span>
-    <input class="form-control mr10" id="cells" type="number" value="20" min="1" max="30">
-    <span class="mr10">Rows: </span class="mr10">
-    <input class="form-control mr10" id="rows" type="number" value="20" min="1" max="50">
-    <button id="build" class="btn btn-secondary">Rebuild Table</button>
+<div class="container">
+  <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Fixed Header Scrolling Table 
+          </h4>
+        </div>
+        <table class="table table-fixed">
+          <thead>
+            <tr>
+              <th class="col-xs-2">#</th><th class="col-xs-8">Name</th><th class="col-xs-2">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-xs-2">1</td><td class="col-xs-8">Mike Adams</td><td class="col-xs-2">23</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">2</td><td class="col-xs-8">Holly Galivan</td><td class="col-xs-2">44</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">3</td><td class="col-xs-8">Mary Shea</td><td class="col-xs-2">86</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">4</td><td class="col-xs-8">Jim Adams</td><td>23</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">5</td><td class="col-xs-8">Henry Galivan</td><td class="col-xs-2">44</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">6</td><td class="col-xs-8">Bob Shea</td><td class="col-xs-2">26</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">7</td><td class="col-xs-8">Andy Parks</td><td class="col-xs-2">56</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">8</td><td class="col-xs-8">Bob Skelly</td><td class="col-xs-2">96</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">9</td><td class="col-xs-8">William Defoe</td><td class="col-xs-2">13</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">10</td><td class="col-xs-8">Will Tripp</td><td class="col-xs-2">16</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">11</td><td class="col-xs-8">Bill Champion</td><td class="col-xs-2">44</td>
+            </tr>
+            <tr>
+              <td class="col-xs-2">12</td><td class="col-xs-8">Lastly Jane</td><td class="col-xs-2">6</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
 </div>
-
-<table id="table"></table>
-
-<script>
-  var $table = $('#table')
-
-  function buildTable($el) {
-    var cells = +$('#cells').val()
-    var rows = +$('#rows').val()
-    var i
-    var j
-    var row
-    var columns = [
-      {
-        field: 'state',
-        checkbox: true,
-        valign: 'middle'
-      }
-    ]
-    var data = []
-
-    for (i = 0; i < cells; i++) {
-      columns.push({
-        field: 'field' + i,
-        title: 'Cell' + i,
-        sortable: true,
-        valign: 'middle',
-        formatter: function (val) {
-          return '<div class="item">' + val + '</div>'
-        },
-        events: {
-          'click .item': function () {
-            console.log('click')
-          }
-        }
-      })
-    }
-    for (i = 0; i < rows; i++) {
-      row = {}
-      for (j = 0; j < cells + 3; j++) {
-        row['field' + j] = 'Row-' + i + '-' + j
-      }
-      data.push(row)
-    }
-    $el.bootstrapTable('destroy').bootstrapTable({
-      height: $('#height').prop('checked') ? 400 : undefined,
-      columns: columns,
-      data: data,
-      toolbar: '.toolbar',
-      search: true,
-      showColumns: true,
-      clickToSelect: true,
-      fixedColumns: true,
-      fixedNumber: +$('#fixedNumber').val(),
-      fixedRightNumber: +$('#fixedRightNumber').val()
-    })
-  }
-
-  $(function() {
-    buildTable($table)
-
-    $('#build').click(function () {
-      buildTable($table)
-    })
-  })
-</script>
