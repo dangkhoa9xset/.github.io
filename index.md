@@ -3,191 +3,111 @@
 <style type="text/css">
 /* important styles */
 
-table {
-  position: relative;
-  width: 700px;
-  background-color: #aaa;
-  overflow: hidden;
-  border-collapse: collapse;
+.fix-column {
+    float: left;
+}
+.thead {
+    height: 40px;
+    white-space: nowrap;
+}
+.thead > span {
+    display: inline-block;
+    width: 120px;
+    line-height: 40px;
+    box-shadow: inset 0 0 1px 0 rgba(0,0,0,.5);
+    background-color: rgba(255,0,0,.3);
+    text-align: center;
+}
+.trow {
+    white-space: nowrap;
+}
+.trow > span {
+    display: inline-block;
+    width: 120px;
+    box-shadow: inset 0 0 1px 0 rgba(0,0,0,.5);
+    line-height: 80px;
+    height: 80px;
+}
+.tbody {
+    height: 300px;
+    overflow: auto;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.fix-column > .tbody {
+    overflow: hidden;
+    /*padding-bottom: 50px;*/
+}
+/*.fix-column > .tbody > .trow:last-child {margin-bottom: 50px;}*/
+
+.fix-column > .tbody > .trow {
+    margin-top: -50px;
+    margin-bottom: 50px;
+}
+.fix-column > .tbody > .trow:first-child {
+    margin-top: 0px;
 }
 
-
-/*thead*/
-thead {
-  position: relative;
-  display: block; /*seperates the header from the body allowing it to be positioned*/
-  width: 700px;
-  overflow: visible;
+.rest-columns {
+    width: 350px;
 }
-
-thead th {
-  background-color: #99a;
-  min-width: 120px;
-  height: 32px;
-  border: 1px solid #222;
+.rest-columns > .thead {
+    /*padding-right: 50px;*/
+    overflow: hidden;
 }
-
-thead th:nth-child(1) {/*first cell in the header*/
-  position: relative;
-  display: block; /*seperates the first cell in the header from the header*/
-  background-color: #88b;
+/*.rest-columns > .thead > :last-child {margin-right: 50px;}*/
+.rest-columns > .thead > span {
+    margin-right: 50px;
+    margin-left: -50px;
 }
-
-
-/*tbody*/
-tbody {
-  position: relative;
-  display: block; /*seperates the tbody from the header*/
-  width: 700px;
-  height: 239px;
-  overflow: scroll;
-}
-
-tbody td {
-  background-color: #bbc;
-  min-width: 120px;
-  border: 1px solid #222;
-}
-
-tbody tr td:nth-child(1) {  /*the first cell in each tr*/
-  position: relative;
-  display: block; /*seperates the first column from the tbody*/
-  height: 40px;
-  background-color: #99a;
-}
+.rest-columns > .thead > :first-child {margin-left: 0px;}
 </style>
 </head>
 
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Town</th>
-        <th>County</th>
-        <th>Age</th>
-        <th>Profession</th>
-        <th>Anual Income</th>
-        <th>Matital Status</th>
-        <th>Children</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John Smith</td>
-        <td>Macelsfield</td>
-        <td>Cheshire</td>
-        <td>52</td>
-        <td>Brewer</td>
-        <td>£47,000</td>
-        <td>Married</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Jenny Jones</td>
-        <td>Threlkeld</td>
-        <td>Cumbria</td>
-        <td>34</td>
-        <td>Shepherdess</td>
-        <td>£28,000</td>
-        <td>Single</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Peter Frampton</td>
-        <td>Avebury</td>
-        <td>Wiltshire</td>
-        <td>57</td>
-        <td>Musician</td>
-        <td>£124,000</td>
-        <td>Married</td>
-        <td>4</td>
-      </tr>
-      <tr>
-        <td>Simon King</td>
-        <td>Malvern</td>
-        <td>Worchestershire</td>
-        <td>48</td>
-        <td>Naturalist</td>
-        <td>£65,000</td>
-        <td>Married</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Lucy Diamond</td>
-        <td>St Albans</td>
-        <td>Hertfordshire</td>
-        <td>67</td>
-        <td>Pharmasist</td>
-        <td>Retired</td>
-        <td>Married</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>Austin Stevenson</td>
-        <td>Edinburgh</td>
-        <td>Lothian </td>
-        <td>36</td>
-        <td>Vigilante</td>
-        <td>£86,000</td>
-        <td>Single</td>
-        <td>Unknown</td>
-      </tr>
-      <tr>
-        <td>Wilma Rubble</td>
-        <td>Bedford</td>
-        <td>Bedfordshire</td>
-        <td>43</td>
-        <td>Housewife</td>
-        <td>N/A</td>
-        <td>Married</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>Kat Dibble</td>
-        <td>Manhattan</td>
-        <td>New York</td>
-        <td>55</td>
-        <td>Policewoman</td>
-        <td>$36,000</td>
-        <td>Single</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>Henry Bolingbroke</td>
-        <td>Bolingbroke</td>
-        <td>Lincolnshire</td>
-        <td>45</td>
-        <td>Landowner</td>
-        <td>Lots</td>
-        <td>Married</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>Alan Brisingamen</td>
-        <td>Alderley</td>
-        <td>Cheshire</td>
-        <td>352</td>
-        <td>Arcanist</td>
-        <td>A pile of gems</td>
-        <td>Single</td>
-        <td>0</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="total-wrapper">
+    <div class="fix-column">
+        <div class="thead">
+            <span>Int1</span>
+        </div>
+        <div class="tbody">
+            <div class="trow">
+                <span>Lorem</span>
+            </div>
+            <div class="trow">
+                <span>Lorem</span>
+            </div>
+            <div class="trow">
+                <span>Lorem</span>
+            </div>
+            <div class="trow">
+                <span>Lorem</span>
+            </div>
+        </div>
+    </div>
+    <div class="rest-columns">
+        <div class="thead">
+            <span>Int2</span><span>Int3</span><span>Int4</span><span>Int5</span>
+        </div>
+        <div class="tbody">
+            <div class="trow">
+                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
+            </div>
+            <div class="trow">
+                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
+            </div>
+            <div class="trow">
+                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
+            </div>
+            <div class="trow">
+                <span>ipsum</span><span>dolor</span><span>sit</span><span>amet</span>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script>
-   $(document).ready(function() {
-  $('tbody').scroll(function(e) { //detect a scroll event on the tbody
-  	/*
-    Setting the thead left value to the negative valule of tbody.scrollLeft will make it track the movement
-    of the tbody element. Setting an elements left value to that of the tbody.scrollLeft left makes it maintain 			it's relative position at the left of the table.    
-    */
-    $('thead').css("left", -$("tbody").scrollLeft()); //fix the thead relative to the body scrolling
-    $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first cell of the header
-    $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first column of tdbody
-  });
-});
+ 
 </script>
 </html>
